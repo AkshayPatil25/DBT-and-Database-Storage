@@ -1,0 +1,41 @@
+﻿Create  following Tables.
+
+1. Vehicle 
+   Vid    Vname         Price          desc
+    1     Activa        80000          Two wheeler.Sturdy.Milage 30 km
+    2     Santro        800000         Product of Hyandai.
+    3     Motor bike    100000         Sturdy and good milage
+ 
+2. Customer
+   Custid Cname     address
+     1    Nilima    Pimpri
+     2    Ganesh    Pune
+ 
+
+3. Salesman
+   Sid    Sname    address
+   10     Rajesh   mumbai
+   11     Seema    Pune
+   13     Rakhi    pune
+ 
+
+4. cust-vehicle (customer is buying one vehicle of one type)
+   Custid Vid Sid   Buy_price
+    1     1    10   75000
+    1     2    10   790000
+    2     3    11   80000
+    3     3    11   75000
+    3     2    10   800000
+
+
+1. Display names of salesmen who work in Pune.
+2. Delete customer from Pimpri area.
+3. Display information of vehicle , Motor bike.
+4. If buying price of the vehicle is 75000 then change it to 80000.
+5. Add new column by name rating in cust_vehicle table.
+6. Give rating 5 to all the vehicles with price greater than 90000.
+7. Delete all the records from Customer table.
+8. Delete entire table Salesman.
+
+
+ 

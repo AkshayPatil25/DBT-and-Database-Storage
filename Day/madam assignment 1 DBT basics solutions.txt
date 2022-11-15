@@ -1,0 +1,300 @@
+SQL> create table Vehicle
+  2  (
+  3  vid number(5),
+  4  vname varchar2(20),
+  5  price number(9),
+  6  desc varchar2(40)
+  7  );
+desc varchar2(40)
+*
+ERROR at line 6:
+ORA-00904: : invalid identifier
+
+
+SQL> create table Vehicle
+  2  (
+  3  Vid number(5),
+  4  Vname varchar2(20),
+  5  Price number(9),
+  6  Description varchar(50)
+  7  );
+
+Table created.
+
+SQL> insert into Vehicle
+  2  values(1,'Activa',80000,'Two wheeler.Sturdy.Milage 30 km');
+
+1 row created.
+
+SQL> insert into Vehicle
+  2  values(2,'Santro',800000,'Product of Hyundai.');
+
+1 row created.
+
+SQL> insert into Vehicle
+  2  values(3,'Motor bike',100000,'Sturdy and good milage');
+
+1 row created.
+
+SQL> select * from Vehicle
+  2  ;
+
+       VID VNAME                     PRICE
+---------- -------------------- ----------
+DESCRIPTION
+--------------------------------------------------
+         1 Activa                    80000
+Two wheeler.Sturdy.Milage 30 km
+
+         2 Santro                   800000
+Product of Hyundai.
+
+         3 Motor bike               100000
+Sturdy and good milage
+
+
+SQL> create table Customer
+  2  (
+  3  Custid number(5),
+  4  Cname varchar2(20),
+  5  address varchar2(30)
+  6  );
+
+Table created.
+
+SQL> insert into Customer
+  2  values(1,'Niliam','Pimpri');
+
+1 row created.
+
+SQL> insert into Customer
+  2  values(2,'Ganesh','Pune');
+
+1 row created.
+
+SQL> select * from Customer;
+
+    CUSTID CNAME                ADDRESS
+---------- -------------------- ------------------------------
+         1 Niliam               Pimpri
+         2 Ganesh               Pune
+
+SQL> create table Salesman
+  2  (
+  3  Sid number(9),
+  4  Sname varchar2(30),
+  5  address varchar2(30)
+  6  );
+
+Table created.
+
+SQL> insert into Salesman
+  2  values(10,'Rajesh','mumbai');
+
+1 row created.
+
+SQL> insert into Salesman
+  2  values(11,'Seema','Pune');
+
+1 row created.
+
+SQL> insert into Salesman
+  2  values(13,'Rakhi','pune');
+
+1 row created.
+
+SQL> select * from Salesman
+  2  ;
+
+       SID SNAME                          ADDRESS
+---------- ------------------------------ ------------------------------
+        10 Rajesh                         mumbai
+        11 Seema                          Pune
+        13 Rakhi                          pune
+
+SQL> create table cust-vehicle
+  2  ;
+create table cust-vehicle
+                 *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> create table cust-vehicle;
+create table cust-vehicle
+                 *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> create table cust_vehicle;
+create table cust_vehicle
+                        *
+ERROR at line 1:
+ORA-00906: missing left parenthesis
+
+
+SQL> create table cust_vehicle;
+create table cust_vehicle
+                        *
+ERROR at line 1:
+ORA-00906: missing left parenthesis
+
+
+SQL> create table cust_vehicle
+  2  (
+  3  Custid number(5),
+  4  Vid number(5),
+  5  Sid number(5),
+  6  Buy_price number(10)
+  7  );
+
+Table created.
+
+SQL> insert into cust_vehicle
+  2  values(1,1,10,75000);
+
+1 row created.
+
+SQL> insert into cust_vehicle
+  2  values(1,2,10,790000);
+
+1 row created.
+
+SQL> insert into cust_vehicle
+  2  values(2,3,11,80000);
+
+1 row created.
+
+SQL> insert into cust_vehicle
+  2  values(3,3,11,75000);
+
+1 row created.
+
+SQL> insert into cust_vehicle
+  2  values(3,2,10,800000);
+
+1 row created.
+
+SQL> select * from cust_vehicle;
+
+    CUSTID        VID        SID  BUY_PRICE
+---------- ---------- ---------- ----------
+         1          1         10      75000
+         1          2         10     790000
+         2          3         11      80000
+         3          3         11      75000
+         3          2         10     800000
+
+SQL> select Sname from Salesman
+  2  where address='Pune';
+
+SNAME
+------------------------------
+Seema
+
+SQL> delete from Customer
+  2  where address='Pimpri';
+
+1 row deleted.
+
+SQL> select * from Customer;
+
+    CUSTID CNAME                ADDRESS
+---------- -------------------- ------------------------------
+         2 Ganesh               Pune
+
+SQL> select Vname from Vehicle
+  2  where Vname='Motor bike';
+
+VNAME
+--------------------
+Motor bike
+
+SQL> select Vid,Vname,Price,Description from Vehicle
+  2  where Vid=3;
+
+       VID VNAME                     PRICE
+---------- -------------------- ----------
+DESCRIPTION
+--------------------------------------------------
+         3 Motor bike               100000
+Sturdy and good milage
+
+
+SQL> update cust_vehicle
+  2  set Buy_price=80000
+  3  where Custid=Vid;
+
+2 rows updated.
+
+SQL> select * from cust_vehicle
+  2  ;
+
+    CUSTID        VID        SID  BUY_PRICE
+---------- ---------- ---------- ----------
+         1          1         10      80000
+         1          2         10     790000
+         2          3         11      80000
+         3          3         11      80000
+         3          2         10     800000
+
+SQL> alter table cust_vehicle
+  2  add rating varchar2(20);
+
+Table altered.
+
+SQL> select * from cust_vehicle;
+
+    CUSTID        VID        SID  BUY_PRICE RATING
+---------- ---------- ---------- ---------- --------------------
+         1          1         10      80000
+         1          2         10     790000
+         2          3         11      80000
+         3          3         11      80000
+         3          2         10     800000
+
+SQL> update cust_vehicle
+  2  set rating='5'
+  3  where Buy_price>90000;
+
+2 rows updated.
+
+SQL> select * from cust_vehicle;
+
+    CUSTID        VID        SID  BUY_PRICE RATING
+---------- ---------- ---------- ---------- --------------------
+         1          1         10      80000
+         1          2         10     790000 5
+         2          3         11      80000
+         3          3         11      80000
+         3          2         10     800000 5
+
+SQL> truncate table Customer;
+
+Table truncated.
+
+SQL> desc Customer;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ CUSTID                                             NUMBER(5)
+ CNAME                                              VARCHAR2(20)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> select * from Customer;
+
+no rows selected
+
+SQL> drop table Salesman;
+
+Table dropped.
+
+SQL> select * from Salesman;
+select * from Salesman
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>

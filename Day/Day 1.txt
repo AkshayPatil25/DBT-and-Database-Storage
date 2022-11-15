@@ -1,0 +1,215 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Nov 15 11:50:23 2022
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> describe student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ROLL                                               NUMBER(2)
+ NAME                                               VARCHAR2(20)
+ PER                                                NUMBER(5,2)
+
+SQL> insert into student
+  2  values(1,'Geeta',89.72);
+
+1 row created.
+
+SQL> insert into student
+  2  values(2,'Raj',78.23);
+
+1 row created.
+
+SQL> insert into student(roll,name)
+  2  values(3,'yash');
+
+1 row created.
+
+SQL> select *
+  2  from student;
+
+      ROLL NAME                        PER
+---------- -------------------- ----------
+         1 Geeta                     89.72
+         2 Raj                       78.23
+         3 yash
+
+SQL> select *
+  2  from student;
+
+      ROLL NAME                        PER
+---------- -------------------- ----------
+         1 Geeta                     89.72
+         2 Raj                       78.23
+         3 yash
+
+SQL> select name
+  2  from student;
+
+NAME
+--------------------
+Geeta
+Raj
+yash
+
+SQL>
+SQL>
+SQL> delete
+  2  from student
+  3  ;
+
+3 rows deleted.
+
+SQL> select *
+  2  from student;
+
+no rows selected
+
+SQL> describe student
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ ROLL                                               NUMBER(2)
+ NAME                                               VARCHAR2(20)
+ PER                                                NUMBER(5,2)
+
+SQL>
+akshay's typing
+
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Nov 15 12:36:33 2022
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> create table Product
+  2  (
+  3  pid number(4),
+  4  pname varchar2(20),
+  5  price number(4,2)
+  6  );
+
+Table created.
+
+SQL> describe Product
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ PID                                                NUMBER(4)
+ PNAME                                              VARCHAR2(20)
+ PRICE                                              NUMBER(4,2)
+
+SQL> insert into Product
+  2  values(1,'Pen',10),
+  3  (2,'Pencil',10);
+values(1,'Pen',10),
+                  *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> insert into Product
+  2  values(1,'Pen',10);
+
+1 row created.
+
+SQL> insert into Product
+  2  values(2,'Pencil',10);
+
+1 row created.
+
+SQL> insert into Product
+  2  values(3,'Eraser',5);
+
+1 row created.
+
+SQL> insert into Product
+  2  values(4,'Scale',15);
+
+1 row created.
+
+SQL> insert into Product
+  2  values(5,'Sharpner',5);
+
+1 row created.
+
+SQL> select * from Product;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+         1 Pen                          10
+         2 Pencil                       10
+         3 Eraser                        5
+         4 Scale                        15
+         5 Sharpner                      5
+
+SQL> select (pid,name) from Product;
+select (pid,name) from Product
+           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select pid,pname from Product;
+
+       PID PNAME
+---------- --------------------
+         1 Pen
+         2 Pencil
+         3 Eraser
+         4 Scale
+         5 Sharpner
+
+SQL> select pname,price from Product;
+
+PNAME                     PRICE
+-------------------- ----------
+Pen                          10
+Pencil                       10
+Eraser                        5
+Scale                        15
+Sharpner                      5
+
+SQL> select pid "Product", pname "Product Name : ", price from Product;
+
+   Product Product Name :            PRICE
+---------- -------------------- ----------
+         1 Pen                          10
+         2 Pencil                       10
+         3 Eraser                        5
+         4 Scale                        15
+         5 Sharpner                      5
+
+SQL> delete
+  2  from product where pid=5;
+
+1 row deleted.
+
+SQL> select * from Product;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+         1 Pen                          10
+         2 Pencil                       10
+         3 Eraser                        5
+         4 Scale                        15
+
+SQL> insert into Product
+  2  values(5,"Omi",69),
+  3  values(6,"Vinya",00);
+values(5,"Omi",69),
+                  *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select pname,price from Product;
