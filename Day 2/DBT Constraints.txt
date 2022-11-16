@@ -1,0 +1,190 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Wed Nov 16 06:40:43
+2022
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> create table dept
+  2  (
+  3    dno number(2) unique,
+  4    dname varchar2(10) not null,
+  5    city varchar2(10) not null
+  6  );
+
+Table created.
+
+SQL> create table emp
+  2  (
+  3    eno number(2) not null,
+  4    ename varchar2(10) not null,
+  5    adhar number(4) unique not null,
+  6    age number(2) default 21,
+  7    salary number(6) check (salary>=20000),
+  8    doj date
+  9  );
+create table emp
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table employee
+  2  (
+  3    eno number(2) not null,
+  4    ename varchar2(10) not null,
+  5    adhar number(4) unique not null,
+  6    age number(2) default 21,
+  7    salary number(6) check (salary>=20000),
+  8    doj date
+  9  );
+
+Table created.
+
+SQL> insert into employee values
+  2  (1,'Jinks',1234,29,45000,'16-Nov-2022');
+
+1 row created.
+
+SQL> insert into employee values
+  2  (2,'Patil',4321,23,40000,'17-Nov-2022');
+
+1 row created.
+
+SQL> insert into employee values
+  2  (3,'Vinya_J',9874,26,20000,'18-Nov-2022');
+
+1 row created.
+
+SQL> insert into employee values
+  2  insert into employee value
+  3  ;
+insert into employee value
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> insert into employee values
+  2  (4,'Joshi_S',4789,21,50000,'19-Nov-2022');
+
+1 row created.
+
+SQL> select * from employee;
+
+       ENO ENAME           ADHAR        AGE     SALARY DOJ
+---------- ---------- ---------- ---------- ---------- ---------
+         1 Jinks            1234         29      45000 16-NOV-22
+         2 Patil            4321         23      40000 17-NOV-22
+         3 Vinya_J          9874         26      20000 18-NOV-22
+         4 Joshi_S          4789         21      50000 19-NOV-22
+
+SQL> set linesize 190
+SQL> set pagesize 30
+SQL> select * from employee;
+
+       ENO ENAME           ADHAR        AGE     SALARY DOJ
+---------- ---------- ---------- ---------- ---------- ---------
+         1 Jinks            1234         29      45000 16-NOV-22
+         2 Patil            4321         23      40000 17-NOV-22
+         3 Vinya_J          9874         26      20000 18-NOV-22
+         4 Joshi_S          4789         21      50000 19-NOV-22
+
+SQL>
+SQL>
+SQL> insert into employee values
+  2  (5,'Omi',4219,22,19000,'20-Nov-2022');
+insert into employee values
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C004187) violated
+
+
+SQL> insert into employee values
+  2  (5,'Omi',1234,22,19000,'20-Nov-2022');
+insert into employee values
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C004187) violated
+
+
+SQL> insert into employee values
+  2  (5,'Omi',1234,22,30000,'20-Nov-2022');
+insert into employee values
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C004188) violated
+
+
+SQL> insert into employee values
+  2  ('Omi',1234,22,19000,'20-Nov-2022');
+insert into employee values
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into employee values
+  2  (,'Omi',1234,22,30000,'20-Nov-2022');
+(,'Omi',1234,22,30000,'20-Nov-2022')
+ *
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> insert into employee values
+  2  (5,'Omi',1234,19000,'20-Nov-2022');
+insert into employee values
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into employee(eno,ename,adhar,salary)
+  2  values(5,'Omi',6969,69000);
+
+1 row created.
+
+SQL> select * from employee;
+
+       ENO ENAME           ADHAR        AGE     SALARY DOJ
+---------- ---------- ---------- ---------- ---------- ---------
+         1 Jinks            1234         29      45000 16-NOV-22
+         2 Patil            4321         23      40000 17-NOV-22
+         3 Vinya_J          9874         26      20000 18-NOV-22
+         4 Joshi_S          4789         21      50000 19-NOV-22
+         5 Omi              6969         21      69000
+
+SQL> insert into dept values
+  2  (10,'IT','Pune');
+
+1 row created.
+
+SQL> insert into dept values
+  2  (11,'RD','Mumbai');
+
+1 row created.
+
+SQL> insert into dept values
+  2  (12,'HR','Delhi');
+
+1 row created.
+
+SQL> insert into dept values
+  2  (13,'Marketing','America');
+
+1 row created.
+
+SQL> select * from dept;
+
+       DNO DNAME      CITY
+---------- ---------- ----------
+        10 IT         Pune
+        11 RD         Mumbai
+        12 HR         Delhi
+        13 Marketing  America
+
+SQL>

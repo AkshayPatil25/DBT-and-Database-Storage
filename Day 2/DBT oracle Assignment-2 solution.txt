@@ -1,0 +1,457 @@
+Q.2) To list all record with job=’Clerk’ or sal>2000
+
+SQL> select *
+  2  from emp
+  3  where job='Clerk' or sal>2000;
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7839 KING         PRESIDENT                       17-NOV-81
+        5000
+                   10
+
+      7698 BLAKE        MANAGER                    7839 01-MAY-81
+        2850
+                   30
+
+      7782 CLARK        MANAGER                    7839 09-JUN-81
+        2450
+                   10
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7566 JONES        MANAGER                    7839 02-APR-81
+        2975
+                   20
+
+      7902 FORD         ANALYST                    7566 03-DEC-81
+        3000
+                   20
+
+      7788 SCOTT        ANALYST                    7566 09-DEC-82
+        3000
+                   20
+
+
+6 rows selected.
+
+
+Q.3) To list all the record with sal=1250 or 1100 
+
+SQL> select *
+  2  from emp
+  3  where sal=1250 or sal=1100;
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7654 MARTIN       SALESMAN                   7698 28-SEP-81
+        1250
+      1400         30
+
+      7521 WARD         SALESMAN                   7698 22-FEB-81
+        1250
+       500         30
+
+      7876 ADAMS        CLERK                      7788 12-JAN-83
+        1100
+                   20
+
+
+Q.4) To list all employees with sal>1250 and <2850
+
+SQL> select *
+  2  from emp
+  3  where sal between 1250 and 2850;
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7698 BLAKE        MANAGER                    7839 01-MAY-81
+        2850
+                   30
+
+      7782 CLARK        MANAGER                    7839 09-JUN-81
+        2450
+                   10
+
+      7654 MARTIN       SALESMAN                   7698 28-SEP-81
+        1250
+      1400         30
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7499 ALLEN        SALESMAN                   7698 20-FEB-81
+        1600
+       300         30
+
+      7844 TURNER       SALESMAN                   7698 08-SEP-81
+        1500
+         0         30
+
+      7521 WARD         SALESMAN                   7698 22-FEB-81
+        1250
+       500         30
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+ SAL
+---------- ------------ -------------------- ---------- ---------
+ ----------
+      COMM     DEPTNO
+---------- ----------
+      7934 MILLER       CLERK                      7782 23-JAN-82
+        1300
+                   10
+
+
+7 rows selected.
+
+Q.5) Retrieve the details (Name, Salary and dept no) of the emp who are working in department code 20
+
+SQL> select ename,sal,deptno
+  2  from emp;
+
+ENAME               SAL     DEPTNO
+------------ ---------- ----------
+KING               5000         10
+BLAKE              2850         30
+CLARK              2450         10
+JONES              2975         20
+MARTIN             1250         30
+ALLEN              1600         30
+TURNER             1500         30
+JAMES               950         30
+WARD               1250         30
+FORD               3000         20
+SMITH               800         20
+
+ENAME               SAL     DEPTNO
+------------ ---------- ----------
+SCOTT              3000         20
+ADAMS              1100         20
+MILLER             1300         10
+
+14 rows selected.
+
+Q.6) Display the total salary of all employees.
+	Total salary will be calculated as sal+comm+sal*0.10
+
+SQL> select sal+comm+sal*0.10 "Total Salary"
+  2  from emp;
+
+Total Salary
+------------
+
+
+
+
+        2775
+        2060
+        1650
+
+        1875
+
+
+
+Total Salary
+------------
+
+14 rows selected.
+
+Q.7) Display all employees who have joined after 9th june 81.
+
+SQL> select *
+  2  from emp
+  3  where hiredate>'9-june-81';
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7839 KING         PRESIDENT                       17-Nov-19
+81 00:00:00
+      5000                    10
+
+      7654 MARTIN       SALESMAN                   7698 28-Sep-19
+81 00:00:00
+      1250       1400         30
+
+      7844 TURNER       SALESMAN                   7698 08-Sep-19
+81 00:00:00
+      1500          0         30
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7900 JAMES        CLERK                      7698 03-Dec-19
+81 00:00:00
+       950                    30
+
+      7902 FORD         ANALYST                    7566 03-Dec-19
+81 00:00:00
+      3000                    20
+
+      7788 SCOTT        ANALYST                    7566 09-Dec-19
+82 00:00:00
+      3000                    20
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7876 ADAMS        CLERK                      7788 12-Jan-19
+83 00:00:00
+      1100                    20
+
+      7934 MILLER       CLERK                      7782 23-Jan-19
+82 00:00:00
+      1300                    10
+
+
+8 rows selected.
+
+
+Q.8) Display empno,empname,sal, comm and total salary.
+   Total Salary = comm + sal;
+
+SQL> select *
+  2  from emp
+  3  ;
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7839 KING         PRESIDENT                       17-Nov-19
+81 00:00:00
+      5000                    10
+
+      7698 BLAKE        MANAGER                    7839 01-May-19
+81 00:00:00
+      2850                    30
+
+      7782 CLARK        MANAGER                    7839 09-Jun-19
+81 00:00:00
+      2450                    10
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7566 JONES        MANAGER                    7839 02-Apr-19
+81 00:00:00
+      2975                    20
+
+      7654 MARTIN       SALESMAN                   7698 28-Sep-19
+81 00:00:00
+      1250       1400         30
+
+      7499 ALLEN        SALESMAN                   7698 20-Feb-19
+81 00:00:00
+      1600        300         30
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7844 TURNER       SALESMAN                   7698 08-Sep-19
+81 00:00:00
+      1500          0         30
+
+      7900 JAMES        CLERK                      7698 03-Dec-19
+81 00:00:00
+       950                    30
+
+      7521 WARD         SALESMAN                   7698 22-Feb-19
+81 00:00:00
+      1250        500         30
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7902 FORD         ANALYST                    7566 03-Dec-19
+81 00:00:00
+      3000                    20
+
+      7369 SMITH        CLERK                      7902 17-Dec-19
+80 00:00:00
+       800                    20
+
+      7788 SCOTT        ANALYST                    7566 09-Dec-19
+82 00:00:00
+      3000                    20
+
+
+     EMPNO ENAME        JOB                         MGR HIREDATE
+---------- ------------ -------------------- ---------- ---------
+-----------
+       SAL       COMM     DEPTNO
+---------- ---------- ----------
+      7876 ADAMS        CLERK                      7788 12-Jan-19
+83 00:00:00
+      1100                    20
+
+      7934 MILLER       CLERK                      7782 23-Jan-19
+82 00:00:00
+      1300                    10
+
+
+Q.9) Display empname,deptno,dname for all employees.
+
+SQL> select empno,ename,sal,comm
+  2  from emp
+  3  where sal=sal+comm;
+
+     EMPNO ENAME               SAL       COMM
+---------- ------------ ---------- ----------
+      7844 TURNER             1500          0
+
+SQL> select empno,ename,sal,comm,comm+sal "Total Salary"
+  2  from emp;
+
+     EMPNO ENAME               SAL       COMM Total Salary
+---------- ------------ ---------- ---------- ------------
+      7839 KING               5000
+      7698 BLAKE              2850
+      7782 CLARK              2450
+      7566 JONES              2975
+      7654 MARTIN             1250       1400         2650
+      7499 ALLEN              1600        300         1900
+      7844 TURNER             1500          0         1500
+      7900 JAMES               950
+      7521 WARD               1250        500         1750
+      7902 FORD               3000
+      7369 SMITH               800
+
+     EMPNO ENAME               SAL       COMM Total Salary
+---------- ------------ ---------- ---------- ------------
+      7788 SCOTT              3000
+      7876 ADAMS              1100
+      7934 MILLER             1300
+
+14 rows selected.
+
+SQL> select emp.ename,dept.deptno,dept.dname
+  2  from emp,dept;
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+KING                 10 ACCOUNTING
+BLAKE                10 ACCOUNTING
+CLARK                10 ACCOUNTING
+JONES                10 ACCOUNTING
+MARTIN               10 ACCOUNTING
+ALLEN                10 ACCOUNTING
+TURNER               10 ACCOUNTING
+JAMES                10 ACCOUNTING
+WARD                 10 ACCOUNTING
+FORD                 10 ACCOUNTING
+SMITH                10 ACCOUNTING
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+SCOTT                10 ACCOUNTING
+ADAMS                10 ACCOUNTING
+MILLER               10 ACCOUNTING
+KING                 20 RESEARCH
+BLAKE                20 RESEARCH
+CLARK                20 RESEARCH
+JONES                20 RESEARCH
+MARTIN               20 RESEARCH
+ALLEN                20 RESEARCH
+TURNER               20 RESEARCH
+JAMES                20 RESEARCH
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+WARD                 20 RESEARCH
+FORD                 20 RESEARCH
+SMITH                20 RESEARCH
+SCOTT                20 RESEARCH
+ADAMS                20 RESEARCH
+MILLER               20 RESEARCH
+KING                 30 SALES
+BLAKE                30 SALES
+CLARK                30 SALES
+JONES                30 SALES
+MARTIN               30 SALES
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+ALLEN                30 SALES
+TURNER               30 SALES
+JAMES                30 SALES
+WARD                 30 SALES
+FORD                 30 SALES
+SMITH                30 SALES
+SCOTT                30 SALES
+ADAMS                30 SALES
+MILLER               30 SALES
+KING                 40 OPERATIONS
+BLAKE                40 OPERATIONS
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+CLARK                40 OPERATIONS
+JONES                40 OPERATIONS
+MARTIN               40 OPERATIONS
+ALLEN                40 OPERATIONS
+TURNER               40 OPERATIONS
+JAMES                40 OPERATIONS
+WARD                 40 OPERATIONS
+FORD                 40 OPERATIONS
+SMITH                40 OPERATIONS
+SCOTT                40 OPERATIONS
+ADAMS                40 OPERATIONS
+
+ENAME            DEPTNO DNAME
+------------ ---------- ----------
+MILLER               40 OPERATIONS
+
+56 rows selected.
+
+SQL> 10
+SP2-0226: Invalid line number
+SQL>
+SQL> select emp.ename,dept.deptno,dept.dname
+  2  from emp,dept
+  3  where ename='Smith';
+
+no rows selected
+
+SQL>

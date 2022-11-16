@@ -1,0 +1,17 @@
+create table emp1  
+(
+eno number(2) primary key,
+ename varchar2(10) not null,
+dno number(2) unique,
+sal number (6) check (sal>=20000),
+doj date,
+foreign key(dno) references dept1(dno)
+);
+
+create table dept1
+(
+dno number(2) primary key,
+dname varchar2(10) not null,
+city varchar2(10) not null
+);
+

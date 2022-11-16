@@ -1,0 +1,17 @@
+Note : Use Emp, dept and salgrade table
+
+1. To list all records with sal > 2000 and comm>200
+2. To list all record with job=’Clerk’ or sal>2000
+3. To list all the record with sal=1250 or 1100 
+4. To list all employees with sal>1250 and <2850
+5. Retrieve the details (Name, Salary and dept no) of the emp who are working in department code 20
+6. Display the total salary of all employees . Total salary will be calculated as sal+comm+sal*0.10
+7. Display all employees who have joined after 9th june 81.
+8. Display empno,empname,sal, comm and total salary.
+   Total Salary = comm + sal;
+9. Display empname,deptno,dname for all employees.
+10. Display empname,deptno,dname for Smith. 
+
+5->> select emp.ename,emp.sal,dept.deptno from emp, dept
+     whre emp.deptno=dept.deptno and dept.deptno=20;
+
