@@ -1,0 +1,99 @@
+Q.1) Find all employees with name ending with R  
+
+SQL> select ename from emp
+  2  where ename like '%r';
+
+no rows selected
+
+SQL> select ename from emp
+  2  where ename like '%R';
+
+ENAME
+------------
+TURNER
+MILLER
+
+Q.2) Find all employees with name starting with M and ending with R.
+
+SQL> select ename
+  2  from emp
+  3  where ename like 'M%R';
+
+ENAME
+------------
+MILLER
+
+Q.3) Find all employees with name having L at 3 rd position
+
+SQL> select ename
+  2  from emp
+  3  where ename like '__L%';
+
+ENAME
+------------
+ALLEN
+MILLER
+
+Q.4) Find all employees with name starting with M has L at 3 rd position and ends with R
+
+SQL> select ename
+  2  from emp
+  3  where ename like 'M__3*R';
+
+no rows selected
+
+Q.5) Find all employees with name having L at 3 rd position and E at second last position
+SQL> select ename
+  2  from emp
+  3  where ename like '__L*E_';
+
+no rows selected
+
+
+Q.6) To find all employees with name starting with either M or A
+SQL> select ename
+  2  from emp
+  3  where ename like 'M*' or ename like 'A%';
+
+ENAME
+------------
+ALLEN
+ADAMS
+
+Q.7) To find all employees with name starting with either M or A and last character as either R or E
+
+SQL> select ename
+  2  from emp
+  3  where (ename like 'M%' or ename like 'A%') and (ename like '
+%R' or ename like 'E%');
+
+ENAME
+------------
+MILLER
+
+Q.8)  To find all employee with name starting with a or m and ending with e
+
+SQL> select ename
+  2  from emp
+  3  where (ename like 'A%' or ename like 'M%') and ename like '%
+E';
+
+no rows selected
+
+Q.9) Find all employees with name starting with A and ending with e, or it may starts with s and end with h
+
+SQL> select ename
+  2  from emp
+  3  where (ename like 'A%' and ename like '%E') or (ename like '
+%S' and ename like '%H');
+
+no rows selected
+
+Q.10) Find all employees with name not starting with A or M
+
+SQL> select ename
+  2  from emp
+  3  where ename like '^A%'or ename like '^%M';
+
+no rows selected
+
