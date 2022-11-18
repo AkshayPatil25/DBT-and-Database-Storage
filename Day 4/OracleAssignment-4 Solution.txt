@@ -1,0 +1,186 @@
+1. Find sum and avg of sal and netsal for each job
+   net sal=sal+comm
+Answer:
+select job,sum(sal),avg(sal),sum(sal+comm) "Net Sal"
+from emp
+group by job;
+
+2. Find how many analysts are there in each department
+Answer:
+select job,count(*)
+from emp
+group  by job
+having job='ANALYST';
+
+3. Find sum , average of salary for all employees whose sal> 1500 departmentwise
+Answer:
+select deptno,sum(sal),avg(sal)
+from emp
+group by deptno
+having sum(sal)>1500;
+
+4. Find all salesman in each department
+Answer:
+select deptno,count(*)
+from emp
+where job='SALESMAN'
+group by deptno;
+
+
+5. to find how many employees are working under same 
+   manager;
+Answer:
+select mgr,count(*)
+from emp
+group by mgr; 
+
+6. To find max, min and sum of salary for all employees
+   whose sal > 1500 and < 3000
+Answer:
+select max(sal) "Maximum Salary",min(sal) "Minimum Salary",sum(sal) "Sum of salaries"
+from emp
+where sal between 1500 and 3000;
+
+7. Display all departments whose avg sal > 2000
+Answer:
+select deptno,avg(sal)
+from emp
+group by deptno
+having avg(sal)>2000;
+
+8. Display all mgr under whom more than 2 analyst or 
+   salesman are working
+Answer: 
+select mgr,count(*)
+from emp
+where job='SALESMAN' or job='ANALYST'
+group by mgr
+having count(*)>2;
+
+
+9. Create new table emp10 same as emp without any data.
+   check it's structure.
+Answer:
+create table emp10
+as
+select *
+from emp
+where 1=2;
+
+10. Create new table dept100 having same structure and data as that of dept table.
+    Add primary key constraint on dno. check it's structure.
+Answer:
+create table dept100
+as
+select *
+from dept;
+
+alter table dept100
+add primary key(deptno);
+
+desc dept100
+
+11.Create new table emp110 same as emp and store all employees working in dept 10.
+   Add primary key constraint on this table for eno. Add foreign key constraint on dno.
+   check it's structure.
+Answer:
+create table emp110
+as
+select *
+from emp
+where deptno=10;
+
+alter table emp110
+add primary key(empno);
+
+alter table emp110
+add foreign key(deptno) references emp(deptno); 
+
+12. insert new row in emp where manager is null.
+Answer:
+
+
+13. Display the emp details who do not have manager. 
+Answer:
+select empno,ename,job,mgr,hiredate,sal,comm,deptno
+from emp
+where mgr is null;
+
+14.Write a query which will display name, department no and date of joining of all 
+   employees joined between  January 1, 1981 and March 31, 1983.Sort it based on 
+   date of joining (ascending).
+Answer:
+select ename,deptno,hiredate
+from emp
+where hiredate between '1-JAN-1981' and '31-MAR-1983'
+order by hiredate;
+
+15.List the details of the employee , whose names start with ‘A’ and end with ‘S’ or 
+   whose names contains N as the second or third character,and end with either ‘N’
+   or ‘S’.
+Answer:
+select *
+from emp
+where (ename like 'A%' and ename like '%S') or (ename like '_N%' or ename like '__N%')
+ and (ename like '%N' or ename like '%S');
+
+16.Display all employee names from emp table in the following format
+   Hello Allen . 
+Answer:
+select concat('Hello ',ename)
+from emp;
+
+
+17. Create following tables for given schema.
+   trainer(tid PK, tname, cid fk)
+   course(cid pk, cname)
+   1. insert 5 meaningful records in both the tables.
+   2. One subject can be handled by multiple trainers. (cid in trainer table may repeat)
+   3. Try on delete set null on trainer table.
+Answer :
+create table trainer
+(
+tid number(2),
+tname varchar2(10),
+cid number(2),
+constraint tkid primary key(tid),
+constraint ckid foreign key(cid) references course(cid) 
+);
+
+create table course
+(
+cid number(2) primary key,
+cname varchar2(10)
+);
+
+insert into course values
+(1,'DBDA');
+insert into course values
+(2,'DAC');
+insert into course values
+(3,'AI');
+insert into course values  
+(4,'Embeded');
+insert into course values
+(5,'ML');
+
+insert into trainer values
+(11,'Akshay',1);
+insert into trainer values
+(12,'Omi',2);
+insert into trainer values
+(13,'Prince',3);
+insert into trainer values
+(14,'Tejas',4);
+insert into trainer values
+(15,'Jinks',5);
+
+
+10. In the above course table , add new column fees.
+
+
+
+
+
+
+
