@@ -1,0 +1,151 @@
+1. Display employee name who is earning maximunm salary.
+Answer :
+select ename,sal
+from emp
+where sal = (select max(sal)
+	     from emp);
+
+2. Find al1 employees who work in the department where martin works.
+Answer:
+select *
+from emp
+where deptno= (select deptno
+               from emp
+               where ename='MARTIN');
+
+3. Find all employees who work in the department where Smith works or Allen works
+Answer:
+select * 
+from emp
+where deptno = any
+(select deptno 
+from emp
+where ename in ('SMITH','ALLEN'));
+
+4. Display all who earn more than Allen or Smith.
+Answer:
+select * 
+from emp
+where sal > any (select sal 
+		 from emp
+		 where ename in ('SMITH','ALLEN'));
+
+5. Delete all employees who work in Smith's dept and earn more than 1200 as a sal.
+Answer:
+delete from emp
+where deptno = (select deptno
+		from emp
+		where ename='SMITH' and sal>1200);
+
+6. Change the sal of Smith to same a Jones.
+Answer:
+update emp
+set sal = (select sal
+	   from emp
+           where ename='JONES')
+where ename='SMITH';
+
+7. Increase the salary by 10% in the database for all employees having experience more than 40 years
+Answer:
+update emp
+set sal=(sal+sal*0.10)
+where floor(months_between(sysdate,hiredate)/12)>40;
+
+8. Implement following using case statement. Use data from emp database.
+   If comm is null ‘need improvement’ If <500 “ok” If >=500 and < 1000 ‘good' ‘Excellent'
+Answer:
+select ename,comm,sal,
+case when comm is NULL then 'Need Improvement'
+     when comm < 500 then 'OK'
+     when comm >= 500 and
+	  comm <= 1000 then 'Good'
+     when comm > 1000 then 'Excellent'
+     end 
+from emp;
+
+
+9. For any available table create a sequence and check how it works.
+Answer:
+create sequence mysequence
+start with 1
+increment by 1
+minvalue 1
+maxvalue 100
+cycle;
+optional:
+insert into emp
+values(mysequence.nextval,'Warner',4000);
+
+10 From the emp table, write a SQL query to find out which employees have the same job as the 
+   employee whose eno is ID is 7499. Return ename,job,deptno.
+Answer:
+select ename,job,deptno
+from emp
+where job= (select job
+	    from emp
+	    where empno=7499);
+
+11.From the emp table, write a SQL query to find those employees who receive a higher salary than 
+   the employee with eno 7499. Return ename,job,deptno,sal.
+Answer:
+select ename,job,deptno,sal
+from emp
+where sal> (select sal 
+            from emp
+            where empno=7499);
+
+12. From the emp table, write a SQL query to find those employees whose salary matches the lowest 
+    salary of any of the departments. Return name, and department ID.   
+Answer:
+select ename,deptno
+from emp
+where sal in (select min(sal)
+	   from emp
+	   group by deptno);
+
+13.From the emp table, write a SQL query to find those employees who earn more than the average 
+   salary. Return employee ID,name,sal.
+Answer:
+select empno,ename,sal
+from emp
+where sal > (select avg(sal)
+	    from emp);
+	   
+14.From the emp table, write a SQL query to find those employees who report to that manager whose 
+   name starts with  ‘F’. Return employee ID,  name,sal.
+
+Answer(Manager wise employees list):
+select empno,ename,sal,deptno
+from emp
+where deptno = (select deptno
+	    from emp
+            where ename like 'B%'
+            group by deptno);
+
+Alternate(Employees who are reporting to any other employee):
+select empno,ename,sal
+from emp
+where mgr=(select empno
+	   from emp
+	   where ename like 'F%');
+
+15. From the emp table, write a SQL query to find those employees whose salary is in the range of 
+    1000, and 3000 (Begin and end values included.). Return all the fields.
+Answer:
+select *
+from emp
+where sal in (select sal
+from emp
+where sal between 1000 and 3000);
+
+
+16. From the emp table , write a SQL query to find those employees whose salary falls within the 
+    range of the smallest salary and 2500. Return all the fields.
+Answer: 
+select *
+from emp
+where sal in (select min(sal) 
+	      from emp
+		group by sal	      
+		having sal between min(sal) and 2500); 
+ 
