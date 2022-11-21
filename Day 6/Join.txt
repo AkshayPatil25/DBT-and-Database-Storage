@@ -1,0 +1,53 @@
+Join :
+
+1) Cross Join(cartation product):
+Normal:
+select eno,enmae,d.name
+from emp e, dept d;
+
+Using Join:
+select e.empno,e.ename,d.deptno
+from emp e
+cross join dept d;
+
+2) Inner Join:
+  i) Equi join
+	select e.empno,e.ename,e.deptno
+	from emp e
+	inner join dept d
+	on e.deptno = d.deptno;
+
+  ii) Non Equi join:
+	Using join:
+	select e.empno,e.ename,e.sal,s.grade
+	from emp e
+	inner join salgrade s
+	on e.sal between s.hisal and s.losal;
+
+	Normal:
+	select e.empno,e.ename,e.sal,s.grade
+	from emp e, salgrade s
+	where e.sal between s.hisal and s.losal;
+   
+  iii) Self join :
+	select e.empno,e.ename,e.mgr,m.ename
+	from emp e
+	join emp m
+	on e.mgr = m.empno;
+
+3) Outer join:
+     i) Left Outer Join:
+	select e.empno,e.ename,e.deptno
+	from dept d
+	left join emp e
+	on e.deptno = d.deptno;
+     ii) Right Outer join:
+	select e.empno,e.ename,e.deptno
+	from emp e
+	right join dept d
+	on e.deptno = d.deptno;
+     iii) Full Join:
+ 	select e.empno, e.ename, e.deptno
+	from emp e
+	full join dept d
+	on e.deptno = d.deptno;	
