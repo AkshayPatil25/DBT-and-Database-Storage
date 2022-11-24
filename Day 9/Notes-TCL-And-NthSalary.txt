@@ -1,0 +1,67 @@
+finding 2nd heighest sal
+
+select max(sal)
+from emp where sal not in (select max(sal)
+			   from emp
+			   );	
+
+------------------------------
+Nth heighest sal
+
+select sal 
+from emp e1
+where n-1 = (select count(distinct sal)
+	     from emp e2
+             where e2.sal>e1.sal);
+
+select distinct sal 
+from emp e1
+where 1= (select count(distinct sal)
+	     from emp e2
+             where e2.sal>e1.sal);
+------------------------------------
+
+TCL
+ 
+
+delete 
+from dept
+where deptno>50;
+
+insert into dept
+values(60,'TECH','Hydrabad');
+
+commit;
+
+select * from dept;
+
+insert into dept
+values(61,'MKT','Mumbai');
+
+select * from dept;
+
+savepoint a;
+
+insert into dept
+values(62,'ADV','D');
+insert into dept
+values(63,'M','Mumbai');
+select * from dept;
+
+savepoint b;
+
+
+-------------------------
+
+In above transactions if we say
+
+--rollback to a 
+  only one row with 
+  values(61,'MKT','Mumbai') will rollback
+
+--rollback to b
+  all rows with values 
+  values(61,'MKT','Mumbai')
+  values(62,'ADV','D');
+  values(63,'M','Mumbai')
+  will rollback
